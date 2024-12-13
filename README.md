@@ -87,5 +87,5 @@
 ### Analysis:
 - After adding cutout augmentation, the model accuracy has improved
 - Model accuracy got saturated around 99.35%, so increased the capacity of the model by increaseing the number of channels in the convolutional layers
-- Model was able to achieve the target accuracy of 99.4+% consistently from 10th epoch
+- Model was able to achieve the target accuracy of 99.4+% consistently from 9th epoch
 ```
