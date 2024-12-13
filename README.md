@@ -2,7 +2,7 @@
 
 ## Target:
 - The target of this project is to build a model that can classify MNIST digits with an accuracy of 99.4% consistently.
-- The model should be able to achieve this accuracy with less than 10,000 parameters and under 15 epochs.
+- The model should be able to achieve this accuracy with less than 8,000 parameters and under 15 epochs.
 - A systematic approach is followed to build the model and achieve the target accuracy.
 - Train the final model on AWS EC2 instance
 
@@ -80,9 +80,9 @@
 - Use learning rate scheduler to achieve accuracy goals quicker
 
 ### Results:
-- Parameters: 9,776
-- Best Train Accuracy: 97.32%
-- Best Test Accuracy: 99.47% (14th epoch)
+- Parameters: 8,014
+- Best Train Accuracy: 96.78%
+- Best Test Accuracy: 99.46% (15th epoch)
 
 ### Analysis:
 - After adding cutout augmentation, the model accuracy has improved
