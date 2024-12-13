@@ -31,59 +31,63 @@ class Net(nn.Module):
 
         # Convolutional Block 1 Layers
         self.conv1 = nn.Sequential(
-            nn.Conv2d(in_channels=1, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
+            nn.Conv2d(in_channels=1, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
+            nn.ReLU(),
+            nn.BatchNorm2d(14),
+            nn.Dropout(0.07)
+        )
+        self.conv2 = nn.Sequential(
+            nn.Conv2d(in_channels=14, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(12),
             nn.Dropout(0.07)
         )
-        self.conv2 = nn.Sequential(
-            nn.Conv2d(in_channels=12, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(14),
-            nn.Dropout(0.07)
-        )
         self.conv3 = nn.Sequential(
-            nn.Conv2d(in_channels=14, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
+            nn.Conv2d(in_channels=12, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(14),
+            nn.BatchNorm2d(12),
             nn.Dropout(0.07)
         )
 
         # Transition Block Layers
         self.point1 = nn.Sequential(
-            nn.Conv2d(in_channels=14, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
-            nn.BatchNorm2d(10)
+            nn.Conv2d(in_channels=12, out_channels=10, kernel_size=(1, 1), padding=0, bias=False),
+            nn.BatchNorm2d(10),
+            nn.Dropout(0.07)
         )
         self.pool1 = nn.MaxPool2d(kernel_size=(2, 2), stride=2)
 
         # Convolutional Block 2 Layers
         self.conv4 = nn.Sequential(
-            nn.Conv2d(in_channels=10, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
+            nn.Conv2d(in_channels=10, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(14),
+            nn.BatchNorm2d(12),
             nn.Dropout(0.07)
         )
         self.conv5 = nn.Sequential(
-            nn.Conv2d(in_channels=14, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
+            nn.Conv2d(in_channels=12, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(14),
+            nn.BatchNorm2d(12),
             nn.Dropout(0.07)
         )
         self.conv6 = nn.Sequential(
-            nn.Conv2d(in_channels=14, out_channels=14, kernel_size=(3, 3), padding=0, bias=False),
+            nn.Conv2d(in_channels=12, out_channels=12, kernel_size=(3, 3), padding=0, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(14),
+            nn.BatchNorm2d(12),
             nn.Dropout(0.07)
         )
         self.conv7 = nn.Sequential(
-            nn.Conv2d(in_channels=14, out_channels=10, kernel_size=(3, 3), padding=1, bias=False),
+            nn.Conv2d(in_channels=12, out_channels=10, kernel_size=(3, 3), padding=1, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(10),
             nn.Dropout(0.07)
         )
 
         # Transition Block 2 Layers
-        self.gap = nn.AdaptiveAvgPool2d(1)
+        self.gap = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1),
+            nn.BatchNorm2d(10),
+        )
 
     def forward(self, x):
         """
